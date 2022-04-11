@@ -1,0 +1,44 @@
+{
+  "name": "dowsing-workshop",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "@vueuse/core": "^8.0.0",
+    "axios": "^0.24.0",
+    "compassql": "^0.21.2",
+    "draco-vis": "0.0.16",
+    "file-saver": "^2.0.5",
+    "highlight.js": "^11.3.1",
+    "jstat": "^1.9.5",
+    "lodash": "^4.17.21",
+    "mitt": "^3.0.0",
+    "pinia": "^2.0.4",
+    "pinia-persistedstate": "^0.1.1",
+    "screenfull": "^6.0.0",
+    "script-loader": "^0.7.2",
+    "undo-stacker": "0.0.6",
+    "uuid": "^8.3.2",
+    "vega": "^5.21.0",
+    "vega-embed": "^6.20.4",
+    "vega-lite": "^5.2.0",
+    "vue": "^3.2.16",
+    "vue-grid-layout": "^3.0.0-beta1",
+    "vue-router": "^4.0.12",
+    "xlsx": "^0.17.4"
+  },
+  "devDependencies": {
+    "@vicons/fluent": "^0.11.0",
+    "@vicons/material": "^0.12.0",
+    "@vitejs/plugin-vue": "^1.9.3",
+    "@vitejs/plugin-vue-jsx": "^1.3.0",
+    "naive-ui": "^2.26.0",
+    "vfonts": "^0.1.0",
+    "vite": "^2.6.4",
+    "vite-plugin-windicss": "^1.8.3",
+    "windicss": "^3.5.1"
+  }
+}
