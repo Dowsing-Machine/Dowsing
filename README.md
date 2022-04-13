@@ -1,7 +1,7 @@
 # Dowsing
 A Task-Driven Approach for Multiple-View Visualizations Dynamic Recommendation
 
-> NOTE: This project is still under development, some features may be temporarily unavailable.
+> NOTE: This project is still under development, some features may be temporarily unavailable. You can click [here](http://dowsing-machine.com) to view our demo.
 
 ## Development
 ### For frontend
