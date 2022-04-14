@@ -1,5 +1,5 @@
 <template>
-    <div class="rounded-lg bg-$embeded-bg-color flex flex-wrap py-1">
+    <div class="rounded-lg bg-$embeded-bg-color grid grid-cols-3 py-1">
         <div class="flex flex-nowrap items-center mx-2" v-for="task in tasks">
             <n-icon class="mr-1">
                 <Circle20Filled :color="task[1].borderColor"/>
