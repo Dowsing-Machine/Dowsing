@@ -24,13 +24,10 @@ jobs:
       run: npm run build
     - name: Deploy
       uses: cross-the-world/scp-pipeline@master
-      env:
-        WELCOME: "ssh scp ssh pipelines"
-        LASTSSH: "Doing something after copying"
       with:
         host: ${{ secrets.USER_HOST }}
         user: ${{ secrets.USER_NAME }}
         pass: ${{ secrets.USER_PASS }}
         connect_timeout: 10s
         local: './dist/*'
-        remote: /home/www/dist
+        remote: /www/wwwroot/dowsing
