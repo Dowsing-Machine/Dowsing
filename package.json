@@ -26,6 +26,7 @@
     "vega-embed": "^6.20.4",
     "vega-lite": "^5.2.0",
     "vue": "^3.2.16",
+    "vue-demi": "^0.13.8",
     "vue-grid-layout": "^3.0.0-beta1",
     "vue-router": "^4.0.12",
     "xlsx": "^0.17.4"
