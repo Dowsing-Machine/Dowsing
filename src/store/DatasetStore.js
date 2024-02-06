@@ -8,6 +8,7 @@ import _ from 'lodash'
 import axios from 'axios'
 // import http from "@/utils/http";
 import META from "./meta.json";
+import { parseFile, getMeta } from "../utils/upload";
 
 export const DatasetStore=defineStore({
     id:"DatasetStore",
@@ -102,6 +103,18 @@ export const DatasetStore=defineStore({
             else{
                 this.userDefinedColType={};
             }
+        },
+        async loadUploadedDataset(file){
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const dataRaw = e.target.result;
+                const dataset = parseFile(dataRaw);
+                this.dataset = dataset;
+                this.name = "custom";
+                this.userDefinedColType = getMeta(dataset);
+                
+            };
+            reader.readAsText(file);
         }
     }
 })

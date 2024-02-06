@@ -10,6 +10,7 @@
     "@vueuse/core": "^8.0.0",
     "axios": "^0.24.0",
     "compassql": "^0.21.2",
+    "d3-dsv": "^3.0.1",
     "draco-vis": "0.0.16",
     "file-saver": "^2.0.5",
     "highlight.js": "^11.3.1",

@@ -40,9 +40,15 @@
                     :color="datasetStore.name=='movies.json'?'#0051c2':null"
                 >Movies</n-button>
             </n-button-group>
-            <!-- <n-upload>
-                <n-button>Upload File</n-button>
-            </n-upload> -->
+            <n-divider class="mx-4" :vertical="true"></n-divider>
+            <n-upload abstract @change="handleUpload">
+                <n-upload-trigger #="{ handleClick }" abstract>
+                    <n-button 
+                        @click="handleClick"
+                        :color="datasetStore.name=='custom'?'#0051c2':null"
+                    >Upload</n-button>
+                </n-upload-trigger>
+            </n-upload>
             <n-data-table
                 :data="datasetStore.dataset"
                 :columns="columns"
@@ -65,7 +71,7 @@
 </template>
 
 <script setup>
-import { NButton, NIcon, NModal, NCard, NSpace, NButtonGroup, NH3, NDivider, NInput, useMessage, NDataTable, NEmpty, NUpload } from "naive-ui";
+import { NButton, NIcon, NModal, NCard, NSpace, NButtonGroup, NH3, NDivider, NInput, useMessage, NDataTable, NEmpty, NUpload, NUploadTrigger } from "naive-ui";
 import { Database24Filled } from "@vicons/fluent"
 import { ref, getCurrentInstance, computed } from "vue";
 
@@ -78,6 +84,7 @@ import _ from "lodash";
 // import {computed} from "vue";
 // import axios from "axios";
 import http from "@/utils/http";
+import { parseFile, getMeta } from "../utils/upload";
 
 const datasetStore = DatasetStore();
 const controlStore = ControlStore();
@@ -131,5 +138,10 @@ const columns = computed(() => {
         },
     }))
 })
+
+function handleUpload({file, event}) {
+    event.preventDefault();
+    datasetStore.loadUploadedDataset(file.file);
+}
 
 </script>
