@@ -7,6 +7,23 @@ const DatasetTypes = {
   TSV: "tsv",
 };
 
+function formatJSON(data){
+  // Is row based?
+  
+  if (_.isArray(data) && _.every(data, _.isObject)) {
+    return data;
+  }
+
+  // Is column based?
+  if (_.isObject(data) && _.every(data, _.isArray)) {
+    return _.zip(..._.values(data)).map((row) =>
+      _.zipObject(_.keys(data), row)
+    );
+  }
+
+  throw new Error("Invalid JSON format");
+}
+
 function fileType(content) {
   try {
     JSON.parse(content);
@@ -26,7 +43,7 @@ export function parseFile(str) {
   const type = fileType(str);
   switch (type) {
     case DatasetTypes.JSON:
-      return JSON.parse(str);
+      return formatJSON(JSON.parse(str));
     case DatasetTypes.CSV:
       return csvParse(str, autoType);
     case DatasetTypes.TSV:

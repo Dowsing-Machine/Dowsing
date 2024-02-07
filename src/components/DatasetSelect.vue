@@ -120,7 +120,7 @@ async function loadDataset(url) {
         message.success(`Successfully load dataset ${datasetStore.name}`);
         reset();
     } catch (error) {
-        message.error("可能是网络开小差了~");
+        message.error("Dataset load failed, maybe network error");
     }
 
 }
@@ -141,7 +141,11 @@ const columns = computed(() => {
 
 function handleUpload({file, event}) {
     event.preventDefault();
-    datasetStore.loadUploadedDataset(file.file);
+    try{
+        datasetStore.loadUploadedDataset(file.file);
+    } catch (err) {
+        message.error("Dataset load failed, maybe incorrect file format");
+    }
 }
 
 </script>
