@@ -22,7 +22,7 @@ const task2num = {
 const num2task = _.invert(task2num)
 
 
-const sessionPromise = ort.InferenceSession.create('/models/model4.onnx')
+const sessionPromise = ort.InferenceSession.create('/models/dowsing_fold0.onnx')
 
 
 /**
@@ -89,7 +89,10 @@ export async function predict(actions) {
       value => !value.includes('encoding') && !value.includes('chart_type') && !value.includes('aggregate')
     )
   ].slice(-4)
-  const actionList = actions.slice(-15)
+  const actionList = [
+    ...Array(15).fill(num2action[0]),
+    ...actions,
+  ].slice(-15)
   const tensor = actionArrayToTensor([
     ...encodingList,
     ...typeList,
@@ -100,15 +103,15 @@ export async function predict(actions) {
   const session = await sessionPromise
   const outputMap = await session.run({ 'onnx::Transpose_0': tensor })
   const outputData = outputMap['319'].data
-  _.toPairs(outputData).map(item => {
+  const value = _.toPairs(outputData).map(item => {
     const [type, score] = item;
     return {
-      type,
+      type: num2task[type],
       score: [score],
     };
   })
   return {
-    value: outputData,
+    value,
   }
 }
 

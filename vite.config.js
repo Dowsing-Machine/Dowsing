@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path';
+import copy from 'rollup-plugin-copy'
 
 import WindiCSS from 'vite-plugin-windicss'
 
@@ -18,6 +19,15 @@ export default defineConfig({
   plugins: [
     vue(),
     WindiCSS(),
+    copy({
+      targets: [
+        {
+          src: 'node_modules/onnxruntime-web/dist/*.wasm',
+          dest: 'public',
+        },
+      ],
+      hook: 'buildStart'
+    })
 
   ],
   define: {

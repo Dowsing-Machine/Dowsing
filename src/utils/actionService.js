@@ -9,7 +9,8 @@ export default {
         eb.on("*", function (type, e) {
             console.log("plugin",type);
             history.push(type);
-            taskStore.getPredicts(type);
+            taskStore.getPredictsNew(history);
+            // taskStore.getPredicts(type);
         });
     }
 }

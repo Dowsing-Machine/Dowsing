@@ -195,7 +195,7 @@ export const TaskStore = defineStore({
 
             const modelOut = {};
 
-            for (const item of res.data.value) {
+            for (const item of res.value) {
                 modelOut[item.type] = item.score
 
                 // newHis[item.type]=calPredicts(item.score,initCustom(),this.history);
