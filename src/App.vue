@@ -6,6 +6,7 @@ import { zhCN, dateZhCN } from 'naive-ui';
 import { reactive } from "vue"
 import EditboardVue from './views/Editboard.vue';
 
+
 // @type import('naive-ui').GlobalThemeOverrides
 const themeOverrides = reactive({
   common: {

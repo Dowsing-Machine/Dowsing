@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 // import axios from "axios";
 import http from "@/utils/http";
 import _ from "lodash";
+import { predict } from "../utils/model";
 
 const DEFAULT_TASKS = ["数据转换", "关联", "关联（趋势）", "对比", "确认值", "聚类/异常"];
 const action2num = {
@@ -162,6 +163,35 @@ export const TaskStore = defineStore({
                     topic
                 }
             })
+
+            const modelOut = {};
+
+            for (const item of res.data.value) {
+                modelOut[item.type] = item.score
+
+                // newHis[item.type]=calPredicts(item.score,initCustom(),this.history);
+                // newPre[item.type] = Math.min(Math.max(calPredicts(item.score, initCustom(), this.history),0),1);
+
+            }
+            // console.log(modelOut)
+            // const newI=this.i+1;
+            const newHis = calPredicts(modelOut, this.customs, this.history);
+            const newPre = calPredicts(
+                modelOut,
+                initCustom(),
+                this.history, { clamp: true }
+            );
+            const newPredicts = this.predicts.concat(newPre);
+            this.$patch({
+                    history: newHis,
+                    predicts: newPredicts
+                })
+                // this.predicts=newPredicts;
+
+        },
+
+        async getPredictsNew(actions) {
+            const res  = await predict(actions);
 
             const modelOut = {};
 
